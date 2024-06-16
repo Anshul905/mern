@@ -1,0 +1,60 @@
+mongodb 
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
+C:\Program Files\MongoDB\Server\7.0\data\
+C:\Program Files\MongoDB\Server\7.0\log\
+
+C:\Program Files\MongoDB\Server\7.0\bin
+
+
+
+shell - 
+https://www.mongodb.com/try/download/shell
+https://www.mongodb.com/docs/mongodb-shell/install/
+
+C:\Users\HP\AppData\Local\Programs\mongosh\
+
+
+
+
+
+
+
+
+Microsoft Windows [Version 10.0.19045.4529]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\HP>mongosh --version
+2.2.9
+
+C:\Users\HP>mongos --version
+mongos version v7.0.11
+Build Info: {
+    "version": "7.0.11",
+    "gitVersion": "f451220f0df2b9dfe073f1521837f8ec5c208a8c",
+    "modules": [],
+    "allocator": "tcmalloc",
+    "environment": {
+        "distmod": "windows",
+        "distarch": "x86_64",
+        "target_arch": "x86_64"
+    }
+}
+
+
+C:\Users\HP>mongod --version
+db version v7.0.11
+Build Info: {
+    "version": "7.0.11",
+    "gitVersion": "f451220f0df2b9dfe073f1521837f8ec5c208a8c",
+    "modules": [],
+    "allocator": "tcmalloc",
+    "environment": {
+        "distmod": "windows",
+        "distarch": "x86_64",
+        "target_arch": "x86_64"
+    }
+}
+
+C:\Users\HP>
+
+
