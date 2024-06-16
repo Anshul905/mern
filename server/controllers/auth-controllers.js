@@ -28,9 +28,15 @@ const register = async ( req,res ) => {
         }
 
         console.log('New user');
-
         const userCreated =  await User.create( { username , email , phone , password} ) ;
-        res.status(201).json( { message : userCreated } )
+
+
+        res.status(201).json( { 
+            // message : userCreated , 
+            message : "registration successful" , 
+            token : await userCreated.generateToken()  , 
+            userId : userCreated._id.toString(),        
+        } );
         
         // //hash the password 
         // const saltRound = await bcrypt.genSalt(10)  

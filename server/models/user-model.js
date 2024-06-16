@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt");
+var jwt = require('jsonwebtoken');
 
 // define the schema 
 const userSchema = new mongoose.Schema({
@@ -55,6 +56,32 @@ userSchema.pre( "save" , async function () {
     // not before complete registration function in auth because we have something to do before saving the data
     // registration func in auth if user already exists return if new user (  pre from this file  then back to registration fucntion in auth  ) 
     // that means iff new user is there because we are returning if user already exists 
+
+
+
+
+
+
+// JWT - json 
+userSchema.methods.generateToken = async function () {
+
+    try {
+        return jwt.sign(
+            {
+                userId : this._id.toString() , 
+                email : this.email, 
+                isAdmin : this.isAdmin, 
+            },
+            process.env.JWT_SECRET_KEY,
+            {
+                expiresIn:"30d",
+            }
+        );
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 
 

@@ -23,6 +23,8 @@ app.use("/api/auth" , router )
 
 https://cloud.mongodb.com/v2/666e96fef5706f13c9aed08c#/clusters<<
 
-
-
 https://www.npmjs.com/package/bcrypt
+
+https://jwt.io/
+
+https://www.npmjs.com/package/jsonwebtoken
