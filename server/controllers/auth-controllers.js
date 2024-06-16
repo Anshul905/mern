@@ -1,3 +1,6 @@
+const User = require("../models/user-model")
+
+
 // HOME LOGIC 
 const home = async ( req,res ) => {
     try {
@@ -12,12 +15,20 @@ const home = async ( req,res ) => {
 const register = async ( req,res ) => {
     try {
         console.log(req.body);
-        res.json( { msg : req.body } )
 
-        // res.json( { mgs : "welcome to register page - controllers" } )
-        // res.send('welcome to register page - controllers ');
+        const { username , email , phone , password } = req.body ;
+
+        const userExist = await User.findOne( {email } )
+
+        if( userExist ){
+            return res.status(400).json( { msg : "User already exist " } )
+        }
+        await User.create( { username , email , phone , password } ) ;
+
+        res.json( { message : req.body } )
+
     } catch (error) {
-        res.status(400).send( {mgs : "page not found" }  ); 
+        res.status(500).send( {mgs : "internal server error" }  ); 
     }
 }
 

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 // define the schema 
-const userSchema = new nongoose.Schema({
+const userSchema = new mongoose.Schema({
     username : {
         type : String,
         require : true,
@@ -27,4 +27,4 @@ const userSchema = new nongoose.Schema({
 // define the model or collection 
 const User = new mongoose.model("User",userSchema)
 
-modul.exports = User  ;
+module.exports = User  ;
