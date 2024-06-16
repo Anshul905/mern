@@ -7,11 +7,8 @@ const PORT = 3000
 const router  = require("./router/auth-router")
 app.use("/api/auth" , router )
 
-// middleware - parses json data from request bodies 
+// middleware - parses json data from request bodies ( postman )
 app.use( express.json() )
-
-
-
 
 
 // app.get(  '/' , (req,res) => {
@@ -22,8 +19,11 @@ app.use( express.json() )
 // } )
 
 
-
-app.listen( PORT , () => {
-    console.log(`Server is running on port no. ${PORT}`);
+const connectDb = require("./utils/db")
+connectDb().then( () => {
+    app.listen( PORT , () => {
+        console.log(`Server is running on port no. ${PORT}`);
+    });
 });
+
 
