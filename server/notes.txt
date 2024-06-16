@@ -18,3 +18,7 @@ app.use( express.json() )
 // Mount the Router 
 const router  = require("./router/auth-router")
 app.use("/api/auth" , router )
+
+
+
+https://cloud.mongodb.com/v2/666e96fef5706f13c9aed08c#/clusters
