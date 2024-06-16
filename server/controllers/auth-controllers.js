@@ -1,4 +1,5 @@
 const User = require("../models/user-model")
+const bcrypt = require("bcrypt");
 
 
 // HOME LOGIC 
@@ -14,18 +15,29 @@ const home = async ( req,res ) => {
 // REGISTER LOGIC 
 const register = async ( req,res ) => {
     try {
-        console.log(req.body);
+        console.log('auth page');
+        // console.log(req.body);
 
         const { username , email , phone , password } = req.body ;
 
         const userExist = await User.findOne( {email } )
 
         if( userExist ){
-            return res.status(400).json( { msg : "User already exist " } )
+            console.log('User Already Exists');
+            return res.status(400).json( { msg : "User already exists " } )
         }
-        await User.create( { username , email , phone , password } ) ;
 
-        res.json( { message : req.body } )
+        console.log('New user');
+
+        const userCreated =  await User.create( { username , email , phone , password} ) ;
+        res.status(201).json( { message : userCreated } )
+        
+        // //hash the password 
+        // const saltRound = await bcrypt.genSalt(10)  
+        // const hash_password = await bcrypt.hash( password , saltRound );
+        // await User.create( { username , email , phone , password:hash_password } ) ;
+        // res.status(201).json( { message : { username , email , phone , hash_password } } )
+
 
     } catch (error) {
         res.status(500).send( {mgs : "internal server error" }  ); 

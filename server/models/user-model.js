@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const bcrypt = require("bcrypt");
 
 // define the schema 
 const userSchema = new mongoose.Schema({
@@ -23,6 +24,40 @@ const userSchema = new mongoose.Schema({
         default : false,
     }
 })
+
+
+
+// as a middleware 
+// pre-save = before saving the data into db 
+userSchema.pre( "save" , async function () {
+
+    console.log("pre save method",this);    
+    
+    const user = this ;
+
+    // if( !user.isModified("password")  ){
+    //     console.log('User Already Created');
+    //     next()
+    // }
+
+    // if only first time 
+    try {
+        const saltRound = await bcrypt.genSalt(10)  
+        const hash_password = await bcrypt.hash( user.password , saltRound );
+        user.password = hash_password        
+    } catch (error) {
+        console.log('ERROR : Password could not hashed');
+        next(error)
+    }
+
+} )
+// here 
+    // not before complete registration function in auth because we have something to do before saving the data
+    // registration func in auth if user already exists return if new user (  pre from this file  then back to registration fucntion in auth  ) 
+    // that means iff new user is there because we are returning if user already exists 
+
+
+
 
 // define the model or collection 
 const User = new mongoose.model("User",userSchema)
