@@ -1,6 +1,11 @@
 const mongoose = require("mongoose")
 
-const URI =  "mongodb://127.0.0.1:27017/temp"
+// local 
+// const URI =  "mongodb://127.0.0.1:27017/temp"
+
+// Connecting to Atlas 
+// const URI = "mongodb+srv://anshulneekhara:qwerty1234@cluster0.zexv96y.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=Cluster0"
+const URI = process.env.MONGODB_URI
 
 const connectDb = async () => {
     try {

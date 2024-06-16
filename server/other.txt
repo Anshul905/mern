@@ -19,7 +19,6 @@ C:\Users\HP\AppData\Local\Programs\mongosh\
 
 
 
-
 Microsoft Windows [Version 10.0.19045.4529]
 (c) Microsoft Corporation. All rights reserved.
 

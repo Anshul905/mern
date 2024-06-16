@@ -1,14 +1,19 @@
+// to use dotenv file
+require("dotenv").config()
+
+
 const express = require("express")
 const app = express() 
 const PORT = 3000
 
+// middleware - parses json data from request bodies ( postman )
+app.use( express.json() )
 
 // Mount the Router 
 const router  = require("./router/auth-router")
 app.use("/api/auth" , router )
 
-// middleware - parses json data from request bodies ( postman )
-app.use( express.json() )
+
 
 
 // app.get(  '/' , (req,res) => {
