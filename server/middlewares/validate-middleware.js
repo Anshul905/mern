@@ -10,8 +10,15 @@ const validate = async (schema, req, res, next) => {
         next();
     } catch (err) {
         // err.errors -> array of errors 
-        console.error('Validation error - ' ,  err.errors[0].message);
-        res.status(400).json( { message : err.errors[0].message } )
+        const status = 422 ;
+        const message = "Fill the input properly" ;
+        const extraDetails = err.errors[0].message ;
+        const error = { status , message , extraDetails }
+        
+        
+        console.log('Validation error - ' ,  extraDetails);
+        // res.status(400).json( { message : msg } )
+        next(error)
     }
 
 }

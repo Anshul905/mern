@@ -19,14 +19,19 @@ app.use("/api/auth" , router )
 
 
 
+
 // app.get(  '/' , (req,res) => {
-//     res.send('welcome to home page');
-// } )
-// app.get(  '/register' , (req,res) => {
-//     res.send('welcome to register page');
-// } )
+    //     res.send('welcome to home page');
+    // } )
+    // app.get(  '/register' , (req,res) => {
+        //     res.send('welcome to register page');
+        // } )
+        
 
-
+// error handling
+const errorMiddleware = require("./middlewares/error-middleware")
+app.use(errorMiddleware)
+        
 const connectDb = require("./utils/db")
 connectDb().then( () => {
     app.listen( PORT , () => {

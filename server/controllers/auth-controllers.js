@@ -24,20 +24,18 @@ const register = async ( req,res ) => {
 
         if( userExist ){
             console.log('User Already Exists');
-            return res.status(400).json( { msg : "User already exists " } )
+            return res.status(400).json( { msg : "User Already Exist" } )
         }
 
         console.log('auth - new user');
         const userCreated =  await User.create( { username , email , phone , password} ) ;
 
-
         res.status(201).json( { 
-            // message : userCreated , 
             message : "registration successful" , 
             token : await userCreated.generateToken()  , 
             userId : userCreated._id.toString(),        
         } );
-        
+    
         // //hash the password 
         // const saltRound = await bcrypt.genSalt(10)  
         // const hash_password = await bcrypt.hash( password , saltRound );
@@ -45,8 +43,14 @@ const register = async ( req,res ) => {
         // res.status(201).json( { message : { username , email , phone , hash_password } } )
 
 
-    } catch (error) {
+    } catch (err) {
         res.status(500).send( {mgs : "internal server error" }  ); 
+
+        // const status = 500 ;
+        // const message = "internal server error" ;
+        // const extraDetails = "" ;
+        // const error = { status , message , extraDetails }
+        // next(error)
     }
 }
 
@@ -81,8 +85,14 @@ const login = async ( req,res ) => {
         }else{ 
             res.status(401).json( { message : "Invalid Credentials" } )
         }
-    } catch (error) {
+    } catch (err) {
         res.status(500).json( {mgs : "internal server error" }  ); 
+
+        // const status = 500 ;
+        // const message = "internal server error" ;
+        // const extraDetails = "" ;
+        // const error = { status , message , extraDetails }
+        // next(error)
     }
 }
 
