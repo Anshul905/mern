@@ -82,6 +82,11 @@ userSchema.methods.generateToken = async function () {
     }
 }
 
+userSchema.methods.comparePassword = async function (password) {
+    console.log('comparing password');
+    return  bcrypt.compare( password , this.password )
+} 
+
 
 
 

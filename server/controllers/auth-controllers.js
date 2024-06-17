@@ -68,8 +68,11 @@ const login = async ( req,res ) => {
             return res.status(400).json( { message : "User does not exist" } )
         }
 
-        const user = await bcrypt.compare( password , userExist.password )
-        if( user ){
+        const user = await userExist.comparePassword( password )
+
+        
+        if( user ){            
+            console.log("Login successful");
             res.status(200).json( { 
                 message : "Login successful" , 
                 token : await userExist.generateToken()  , 
