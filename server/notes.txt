@@ -28,3 +28,8 @@ https://www.npmjs.com/package/bcrypt
 https://jwt.io/
 
 https://www.npmjs.com/package/jsonwebtoken
+
+https://www.npmjs.com/package/zod
+https://www.npmjs.com/package/zod#parseasync
+https://github.com/colinhacks/zod#parseasync
+
