@@ -9,6 +9,9 @@ const PORT = 3000
 // middleware - parses json data from request bodies ( postman )
 app.use( express.json() )
 
+// Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
 // Mount the Router 
 const router  = require("./router/auth-router")
 app.use("/api/auth" , router )
