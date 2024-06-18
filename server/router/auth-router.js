@@ -2,20 +2,22 @@ const express = require("express")
 const router = express.Router() 
 
 const validate = require("../middlewares/validate-middleware")
-
 const authControllers = require("../controllers/auth-controllers")
-const signupSchema = require("../validators/auth-validator")
 
 router.route('/').get( authControllers.home )
-
+const signupSchema = require("../validators/auth-validator")
 router.post("/register", 
             async (req, res, next) => { validate(signupSchema, req, res, next); } ,
             authControllers.register
 );
-// router.route('/register').post( validate(signupSchema) , authControllers.register )
 
 
-router.route( '/login' ).post( authControllers.login )  
+const loginSchema = require("../validators/login-validator")
+router.post("/login", 
+    async (req, res, next) => { validate(loginSchema, req, res, next); } ,
+    authControllers.login
+);
+// router.route( '/login' ).post( authControllers.login )  
 
 
 
